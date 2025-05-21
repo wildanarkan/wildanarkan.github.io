@@ -1,1 +1,660 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="shortcut icon" href="/a.png"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>wildanarkan</title><script defer="defer" src="/static/js/main.cb48c4ef.js"></script><link href="/static/css/main.07bc16de.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Wildan - Mobile Developer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --background-light: #f3f4f6;
+            --background-white: #ffffff;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background-white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header Section */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .profile-img svg {
+            width: 80px;
+            height: 80px;
+            fill: white;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        header h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        
+        .contact-item svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Main Content */
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .card {
+            background-color: var(--background-white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .card h3 svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Skills */
+        .skill-category {
+            margin-bottom: 20px;
+        }
+        
+        .skill-category h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            background-color: var(--background-light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Education */
+        .education-item {
+            margin-bottom: 15px;
+        }
+        
+        .education-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .education-item p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+        
+        /* Soft Skills */
+        .soft-skills-list {
+            list-style: none;
+        }
+        
+        .soft-skills-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .soft-skills-list svg {
+            color: var(--success-color);
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+        
+        /* Main */
+        .main {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Profile */
+        .profile-card p {
+            font-size: 1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        /* Projects */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .project-card {
+            background-color: var(--background-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .project-title h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .project-tech {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        .project-features {
+            list-style-type: none;
+        }
+        
+        .project-features li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .project-features li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Experience */
+        .experience-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 2px solid var(--primary-color);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .experience-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .experience-duration {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        .experience-duties {
+            list-style-type: none;
+        }
+        
+        .experience-duties li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .experience-duties li::before {
+            content: "→";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header h2 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background-color: white;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            header {
+                background: var(--primary-color) !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .content {
+                gap: 20px;
+            }
+            
+            .project-card:hover {
+                transform: none;
+            }
+            
+            footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-img">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12 2a10 10 0 0 0-7.35 16.76 10.001 10.001 0 0 0 14.7 0A9.999 9.999 0 0 0 12 2zm0 16c-1.5 0-2.9-.44-4.07-1.19.55-.83 1.4-1.46 2.47-1.77l.6-.14.6.14c1.08.31 1.92.95 2.47 1.77A8.007 8.007 0 0 1 12 18zm4.26-.77c-.79-1.11-1.88-1.9-3.2-2.26a4.002 4.002 0 0 0 1.44-5.76c-.72-1.24-2.04-2-3.5-2s-2.78.76-3.5 2a4.002 4.002 0 0 0 1.44 5.76 6.067 6.067 0 0 0-3.2 2.26A8.007 8.007 0 0 1 4 12a8 8 0 0 1 16 0 8.006 8.006 0 0 1-3.74 6.78zM12 8c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/>
+                </svg>
+            </div>
+            <h1>WILDAN</h1>
+            <h2>Mobile Developer | Flutter & Laravel Specialist</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    wildanarkn@gmail.com
+                </div>
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path>
+                    </svg>
+                    github.com/wildanarkan
+                </div>
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
+                    </svg>
+                    linkedin.com/in/wildanarkan
+                </div>
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+                    </svg>
+                    0856-0401-4482
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <!-- Technical Skills -->
+                <div class="card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M22 9V7h-2V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2v-2h-2V9h2zm-4 10H4V5h14v14zM6 13h5v4H6zm6-6h4v3h-4zM6 7h5v5H6zm6 4h4v6h-4z"></path>
+                        </svg>
+                        Keahlian Teknis
+                    </h3>
+                    <div class="skill-category">
+                        <h4>Mobile Development</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Flutter</span>
+                            <span class="skill-tag">Dart</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Web Development</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Laravel</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">Blade</span>
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Database</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Firebase</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Tools</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Postman</span>
+                            <span class="skill-tag">VS Code</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Deployment</h4>
+                        <div class="skills-list">
+                            <span class="skill-tag">cPanel</span>
+                            <span class="skill-tag">Shared Hosting</span>
+                            <span class="skill-tag">Firebase Hosting</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Education -->
+                <div class="card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"></path>
+                        </svg>
+                        Pendidikan
+                    </h3>
+                    <div class="education-item">
+                        <h4>SMK Negeri 12</h4>
+                        <p>Pengembangan Perangkat Lunak & Gim (PPLG)</p>
+                        <p>Lulus: 2024</p>
+                    </div>
+                </div>
+                
+                <!-- Soft Skills -->
+                <div class="card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"></path>
+                        </svg>
+                        Soft Skills
+                    </h3>
+                    <ul class="soft-skills-list">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                            Kemampuan beradaptasi dengan teknologi baru
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                            Komunikasi efektif dalam tim
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                            Manajemen waktu dan prioritas
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                            Problem-solving dan berpikir analitis
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                            Kemampuan belajar mandiri
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="main">
+                <!-- Profile Section -->
+                <div class="card profile-card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                        </svg>
+                        Profil Singkat
+                    </h3>
+                    <p>
+                        Saya adalah seorang Mobile Developer dengan fokus pada pengembangan aplikasi menggunakan Flutter dan Laravel. Memiliki kemampuan untuk mengerjakan proyek dari tahap desain (slicing dari Figma) hingga implementasi sistem backend dan frontend. Berpengalaman dalam membangun aplikasi HRIS dan sistem manajemen data untuk berbagai keperluan, baik akademik maupun instansi.
+                    </p>
+                </div>
+                
+                <!-- Projects Section -->
+                <div class="card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 6h-4c0-2.76-2.24-5-5-5S7 3.24 7 6H3v16h18V6zm-9-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 19H5V8h14v14z"></path>
+                        </svg>
+                        Portofolio Proyek
+                    </h3>
+                    <div class="projects-list">
+                        <!-- Project 1 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-title">
+                                    <h4>Aplikasi HRIS Karyawan</h4>
+                                    <div class="project-tech">Flutter, Laravel, MySQL</div>
+                                </div>
+                            </div>
+                            <ul class="project-features">
+                                <li>Sistem Human Resource Information System lengkap untuk manajemen karyawan</li>
+                                <li>Fitur autentikasi dan keamanan multi-level</li>
+                                <li>Sistem absensi dengan validasi lokasi dan timestamp</li>
+                                <li>Modul pengajuan dan persetujuan cuti terintegrasi</li>
+                                <li>Dashboard laporan bulanan kinerja karyawan</li>
+                                <li>Optimasi untuk pengguna mobile dengan UI/UX responsif</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Project 2 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-title">
+                                    <h4>Sistem Informasi Alumni Pasmanbaya 1-9</h4>
+                                    <div class="project-tech">Laravel, Flutter, MySQL, Firebase</div>
+                                </div>
+                            </div>
+                            <ul class="project-features">
+                                <li>Platform terpadu untuk manajemen data alumni</li>
+                                <li>Panel admin berbasis Laravel untuk pengelolaan data</li>
+                                <li>Aplikasi mobile Flutter untuk pengisian formulir dan akses data</li>
+                                <li>Forum diskusi alumni dengan fitur kategori dan filter</li>
+                                <li>Sistem pencarian alumni berdasarkan angkatan, jurusan, dan lokasi</li>
+                                <li>Integrasi pemberitahuan untuk acara dan kegiatan alumni</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Project 3 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-title">
+                                    <h4>Aplikasi Emergency Alert</h4>
+                                    <div class="project-tech">Flutter, Laravel, Firebase</div>
+                                </div>
+                            </div>
+                            <ul class="project-features">
+                                <li>Aplikasi tanggap darurat dengan tombol SOS</li>
+                                <li>Sistem pelacakan lokasi real-time dengan geofencing</li>
+                                <li>Notifikasi push ke admin dan petugas keamanan</li>
+                                <li>Log riwayat aktivitas dan pelaporan</li>
+                                <li>Integrasi dengan layanan emergency response</li>
+                                <li>Mode offline dengan sinkronisasi ketika terhubung kembali</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Experience Section -->
+                <div class="card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"></path>
+                        </svg>
+                        Pengalaman
+                    </h3>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="experience-title">Freelance Mobile Developer</span>
+                            <span class="experience-duration">2023 - Sekarang</span>
+                        </div>
+                        <ul class="experience-duties">
+                            <li>Pengembangan aplikasi mobile berbasis Flutter untuk klien lokal dan internasional</li>
+                            <li>Implementasi backend dengan Laravel untuk mendukung aplikasi mobile</li>
+                            <li>Migrasi dan pembaruan aplikasi legacy ke teknologi modern</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="experience-title">Asisten Praktikum Pemrograman Mobile</span>
+                            <span class="experience-duration">2023 - 2024</span>
+                        </div>
+                        <ul class="experience-duties">
+                            <li>Membantu mengajar dasar-dasar pemrograman Dart dan Flutter</li>
+                            <li>Merancang materi praktikum dan tugas pemrograman</li>
+                            <li>Memberikan bimbingan teknis kepada peserta praktikum</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Wildan | Mobile Developer & Flutter Specialist</p>
+        </footer>
+    </div>
+    
+    <!-- Script to help convert to PDF -->
+    <script>
+        // This is for preview only, actual PDF conversion would typically happen server-side
+        // or using a dedicated PDF library
+        window.addEventListener('load', function() {
+            console.log('Portfolio loaded and ready for PDF conversion');
+            // In real-world scenario, you would connect to a PDF generation API here
+        });
+    </script>
+</body>
+</html>
